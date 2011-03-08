@@ -1,0 +1,18 @@
+<div class="cart-title" >Your Cart<%= @test_data %></div>
+<table>
+	
+	<%= render(:partial => 'cart_item', :collection => cart.items) %>
+	
+	<tr class="total-line" >
+		<td colspan="2" >Total</td>
+		<td class="total-cell" ><%= number_to_currency(cart.total_price) %></td>
+	</tr>
+</table>
+
+<!-- Play time solution -->
+<!-- Hint: variables set in the controller are available in the layout as well as in the DIRECTLY rendered template -->
+<% unless @hide_checkout_btn_flag == 1 %>
+	<%= button_to "Checkout", :action => :checkout %>
+<% end %>
+
+<%= button_to "Empty Cart", :action => :empty_cart %>

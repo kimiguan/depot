@@ -1,0 +1,15 @@
+page.select("div#notice").each {|div| div.hide}
+page.replace_html("cart", :partial => "cart", :object => @cart)
+
+# ZG comments: [2009-05-20]
+# when use this condition "if @cart.items.size == 1", replace condition bellow "if @cart.total_items == 1",
+# this senario will happen: when keep adding the same book to the cart, the blind_down effect just keep accuring.
+# the reason is "@cart.items.size = 1", no matter how many times you add the same book to the cart.
+page[:cart].visual_effect :blind_down if @cart.total_items == 1
+
+
+page[:current_item].visual_effect :highlight,
+                                  :startcolor => "#88ff88",
+                                  :endcolor => "#114411"
+
+                                  
